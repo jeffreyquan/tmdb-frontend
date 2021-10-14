@@ -18,4 +18,4 @@ function AuthProvider({ children }: WithChildren) {
   );
 }
 
-export default AuthProvider;
+export { AuthProvider };
