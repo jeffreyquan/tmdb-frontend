@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
+import { HomeScreen } from "screens/Home";
+import { Header } from "components/Header";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -70,9 +72,8 @@ const Profile = () => {
 function App() {
   return (
     <div className="App">
-      <LoginButton />
-      <LogoutButton />
-      <Profile />
+      <Header />
+      <HomeScreen />
     </div>
   );
 }
