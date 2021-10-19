@@ -3,6 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import "./App.css";
 import { HomeScreen } from "screens/Home";
 import { Header } from "components/Header";
+import { Routes, Route, Link as RouterLink, useMatch } from "react-router-dom";
+import { MovieScreen } from "screens/Movie";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -71,10 +73,19 @@ const Profile = () => {
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header />
-      <HomeScreen />
+      <AppRoutes />
     </div>
+  );
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomeScreen />} />
+      <Route path="movie/:movieId" element={<MovieScreen />} />
+    </Routes>
   );
 }
 
