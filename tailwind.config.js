@@ -1,4 +1,8 @@
 // https://tailwindcss.com/docs/guides/create-react-app
+/*
+To override prose styles, add `important: "html"`
+https://github.com/tailwindlabs/tailwindcss-typography/issues/32#issuecomment-663045275
+*/
 
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
@@ -15,5 +19,9 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  important: "html",
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/typography"),
+  ],
 };
