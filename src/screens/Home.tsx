@@ -1,4 +1,6 @@
+import { MovieCard } from "components/MovieCard";
 import * as React from "react";
+import { Movie } from "types";
 import { useMovieSearch } from "utils/movies";
 
 function HomeScreen() {
@@ -17,22 +19,27 @@ function HomeScreen() {
   }
 
   return (
-    <div>
+    <div className="max-w-screen-lg	mx-auto px-2">
       <form onSubmit={handleSearchClick}>
-        <div className="max-w-screen-xl	mx-auto my-6">
+        <div className="my-6 flex">
           <input
             id="search"
             type="search"
-            className="w-8/12	sm:w-9/12	mr-2 py-2 px-4 rounded-lg focus:outline-none focus:ring focus:border-blue-300 border border-gray-200"
+            className="w-11/12	mr-2 py-2 px-4 rounded-lg focus:outline-none focus:ring focus:border-blue-300 border border-gray-200"
           />
           <button
             type="submit"
-            className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-tmdb-light-green to-tmdb-light-blue hover:bg-green-700"
+            className="	py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-tmdb-light-green to-tmdb-light-blue hover:bg-green-700"
           >
             Search
           </button>
         </div>
       </form>
+      <div className="grid gap-y-4">
+        {movies.map((movie: Movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 }
