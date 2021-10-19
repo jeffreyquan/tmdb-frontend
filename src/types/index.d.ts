@@ -2,7 +2,7 @@ import * as React from "react";
 
 type Movie = {
   id: number;
-  backdrop: string;
+  backdrop: string | null;
   overview: string;
   poster: string;
   releaseDate: string;
