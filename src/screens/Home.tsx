@@ -1,6 +1,7 @@
 import { MovieCard } from "components/MovieCard";
 import * as React from "react";
 import { Movie } from "types";
+import { Spinner } from "components/Spinner";
 import { useMovieSearch } from "utils/movies";
 
 function HomeScreen() {
@@ -35,10 +36,27 @@ function HomeScreen() {
           </button>
         </div>
       </form>
-      <div className="grid gap-y-4">
-        {movies.map((movie: Movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+      <div>
+        {movies.length ? (
+          <div className="grid gap-y-4">
+            {movies.map((movie: Movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+          </div>
+        ) : queried ? (
+          <div>
+            {isLoading ? (
+              <div className="flex justify-center">
+                <Spinner />
+              </div>
+            ) : (
+              <p>
+                We couldn't find any books with the query "{query}". Please try
+                another.
+              </p>
+            )}
+          </div>
+        ) : null}
       </div>
     </div>
   );

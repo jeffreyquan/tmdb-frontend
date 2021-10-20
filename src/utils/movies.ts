@@ -36,7 +36,7 @@ function useMovieSearch(query: string) {
   const result = useQuery(getMovieSearchConfig(queryClient, client, query));
   return {
     ...result,
-    movies: result.data?.results ?? loadingMovies,
+    movies: result.data?.results ?? [],
   };
 }
 
