@@ -20,21 +20,19 @@ async function client(
     ...customConfig,
   };
 
-  return window
-    .fetch(`${apiURL}/${endpoint}`, config)
-    .then(async (response) => {
-      if (response.status === 401) {
-        return Promise.reject({
-          message: "Please re-authenticate",
-        });
-      }
-      const data = await response.json();
-      if (response.ok) {
-        return data;
-      } else {
-        return Promise.reject(data);
-      }
-    });
+  return window.fetch(`${apiURL}${endpoint}`, config).then(async (response) => {
+    if (response.status === 401) {
+      return Promise.reject({
+        message: "Please re-authenticate",
+      });
+    }
+    const data = await response.json();
+    if (response.ok) {
+      return data;
+    } else {
+      return Promise.reject(data);
+    }
+  });
 }
 
 export { client };
