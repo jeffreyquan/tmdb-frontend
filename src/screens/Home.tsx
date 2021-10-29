@@ -27,6 +27,7 @@ function HomeScreen() {
             id="search"
             type="search"
             className="w-11/12	mr-2 py-2 px-4 rounded-lg focus:outline-none focus:ring focus:border-blue-300 border border-gray-200"
+            placeholder="Search for movie"
           />
           <button
             type="submit"
