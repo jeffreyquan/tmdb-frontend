@@ -73,10 +73,10 @@ const Profile = () => {
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
       <AppRoutes />
-    </div>
+    </>
   );
 }
 
