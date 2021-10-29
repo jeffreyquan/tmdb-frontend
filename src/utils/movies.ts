@@ -14,6 +14,11 @@ const loadingMovies = Array.from({ length: 10 }, (v, index) => ({
   ...loadingMovie,
 }));
 
+const movieQueryConfig = {
+  staleTime: 1000 * 60 * 60,
+  cacheTime: 1000 * 60 * 60,
+};
+
 function getMovieSearchConfig(
   queryClient: QueryClient,
   client: (endpoint: string, config?: RequestConfig) => Promise<any>,
@@ -23,7 +28,7 @@ function getMovieSearchConfig(
     queryKey: ["movieSearch", { query }],
     queryFn: () => {
       if (query) {
-        return client(`movies/search?query=${encodeURIComponent(query)}`).then(
+        return client(`/movies/search?query=${encodeURIComponent(query)}`).then(
           (data) => data
         );
       }
@@ -40,4 +45,18 @@ function useMovieSearch(query: string) {
   };
 }
 
-export { useMovieSearch };
+function useMovie(movieId: string | undefined) {
+  const { data } = useQuery({
+    queryKey: ["movie", { movieId }],
+    queryFn: () => {
+      if (movieId) {
+        return client(`/movies/${movieId}`).then((data) => data);
+      }
+    },
+    ...movieQueryConfig,
+  });
+
+  return data;
+}
+
+export { useMovie, useMovieSearch };
