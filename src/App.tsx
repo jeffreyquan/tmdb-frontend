@@ -6,22 +6,6 @@ import { Header } from "components/Header";
 import { Routes, Route, Link as RouterLink, useMatch } from "react-router-dom";
 import { MovieScreen } from "screens/Movie";
 
-const LoginButton = () => {
-  const { loginWithRedirect } = useAuth0();
-
-  return <button onClick={() => loginWithRedirect()}>Log In</button>;
-};
-
-const LogoutButton = () => {
-  const { logout } = useAuth0();
-
-  return (
-    <button onClick={() => logout({ returnTo: window.location.origin })}>
-      Log Out
-    </button>
-  );
-};
-
 const Profile = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const serverUrl = process.env.REACT_APP_SERVER_URL;

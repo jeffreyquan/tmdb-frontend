@@ -31,7 +31,7 @@ function HomeScreen() {
           />
           <button
             type="submit"
-            className="	py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-tmdb-light-green to-tmdb-light-blue hover:bg-green-700"
+            className="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-gradient-to-r from-tmdb-light-green to-tmdb-light-blue hover:bg-green-700"
           >
             Search
           </button>

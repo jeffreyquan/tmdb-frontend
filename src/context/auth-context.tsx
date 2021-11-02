@@ -5,7 +5,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 // https://auth0.com/blog/complete-guide-to-react-user-authentication/
 
 function AuthProvider({ children }: WithChildren) {
-  console.log(process.env.REACT_APP_AUTH0_AUDIENCE);
   return (
     <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN as string}
