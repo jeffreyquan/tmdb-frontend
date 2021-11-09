@@ -12,7 +12,7 @@ function ActorCard({ actor }: ActorCardProps) {
 
   return (
     <div className="inline-block rounded-2xl shadow-sm">
-      <div className="flex flex-col w-32">
+      <div className="flex flex-col w-32 h-full">
         <div className="flex rounded-t-2xl h-[192px] items-center bg-gray-200">
           <img
             src={image}
@@ -20,7 +20,9 @@ function ActorCard({ actor }: ActorCardProps) {
             className="m-0 overflow-hidden rounded-t-2xl"
           />
         </div>
-        <p className="text-center my-2">{name}</p>
+        <p className="break-word whitespace-normal text-sm	text-center my-2 px-2 h-full flex items-center justify-center">
+          {name}
+        </p>
       </div>
     </div>
   );
