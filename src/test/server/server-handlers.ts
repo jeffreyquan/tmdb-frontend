@@ -28,8 +28,6 @@ const handlers = [
         matchingMovies = await moviesDB.query(query);
       }
 
-      console.log(matchingMovies);
-
       return res(
         ctx.json({
           results: matchingMovies,
