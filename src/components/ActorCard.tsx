@@ -17,12 +17,14 @@ function ActorCard({ actor }: ActorCardProps) {
           <img
             src={image}
             alt={`${name}`}
-            className="m-0 overflow-hidden rounded-t-2xl"
+            className="m-0 overflow-hidden rounded-t-2xl h-full"
           />
         </div>
-        <p className="break-word whitespace-normal text-sm	text-center my-2 px-2 h-full flex items-center justify-center">
-          {name}
-        </p>
+        <div className="flex flex-1 items-center justify-center">
+          <p className="break-word whitespace-normal text-sm text-center my-2 px-2">
+            {name}
+          </p>
+        </div>
       </div>
     </div>
   );
