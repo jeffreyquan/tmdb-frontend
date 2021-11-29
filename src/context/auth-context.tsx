@@ -1,5 +1,7 @@
+import * as React from "react";
+import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { client } from "utils/api-client";
 import { WithChildren } from "types";
-import { Auth0Provider } from "@auth0/auth0-react";
 
 // https://auth0.com/docs/quickstart/spa/react/01-login
 // https://auth0.com/blog/complete-guide-to-react-user-authentication/
@@ -16,5 +18,21 @@ function AuthProvider({ children }: WithChildren) {
     </Auth0Provider>
   );
 }
+function useClient() {
+  const { getAccessTokenSilently } = useAuth0();
 
-export { AuthProvider };
+  return React.useCallback(
+    (endpoint, config?) => {
+      const clientWithAuth = async (endpoint: string, config?: any) => {
+        const token = await getAccessTokenSilently();
+
+        return client(endpoint, { ...config, token });
+      };
+
+      return clientWithAuth(endpoint, config);
+    },
+    [getAccessTokenSilently]
+  );
+}
+
+export { AuthProvider, useClient };

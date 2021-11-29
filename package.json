@@ -5,6 +5,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "@craco/craco": "^6.3.0",
+    "@reach/tooltip": "^0.16.2",
     "@tailwindcss/line-clamp": "^0.2.2",
     "@tailwindcss/typography": "^0.4.1",
     "@types/jest": "^26.0.15",

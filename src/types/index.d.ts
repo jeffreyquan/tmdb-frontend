@@ -20,8 +20,14 @@ type Movie = {
   title: string;
 };
 
+type ListItem = {
+  id: number;
+  hasWatched: boolean;
+  movie: Movie;
+};
+
 type WithChildren = {
   children: React.ReactNode;
 };
 
-export { Actor, Movie, WithChildren };
+export { Actor, ListItem, Movie, WithChildren };

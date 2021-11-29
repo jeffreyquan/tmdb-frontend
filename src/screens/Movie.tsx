@@ -3,6 +3,7 @@ import { Carousel } from "components/Carousel";
 import { useParams } from "react-router-dom";
 import { Actor } from "types";
 import { useMovie } from "utils/movies";
+import { StatusButtons, TooltipButton } from "components/StatusButtons";
 
 function MovieScreen() {
   const { movieId } = useParams();
@@ -14,8 +15,6 @@ function MovieScreen() {
 
   const { actors, overview, poster, releaseDate, title } = movie;
 
-  console.log({ movie });
-
   return (
     <div className="max-w-screen-lg	mx-auto px-2 my-8 prose">
       <div className="grid grid-cols-3 gap-6">
@@ -26,6 +25,9 @@ function MovieScreen() {
           <h1>{title}</h1>
           <span>{releaseDate}</span>
           <p>{overview}</p>
+          <div>
+            <StatusButtons movie={movie} />
+          </div>
         </div>
       </div>
       <Carousel>
