@@ -97,9 +97,14 @@ function useSafeDispatch<DataType>(
   );
 }
 
-const defaultInitialState = { status: "idle", data: null, error: null };
+const defaultInitialState = {
+  status: "idle",
+  data: null,
+  error: null,
+  promise: null,
+};
 
-function useAsync<DataType>(initialState: AsyncState<DataType>) {
+function useAsync<DataType>(initialState?: AsyncState<DataType>) {
   const initialStateRef = React.useRef({
     ...defaultInitialState,
     ...initialState,
@@ -107,7 +112,7 @@ function useAsync<DataType>(initialState: AsyncState<DataType>) {
 
   const [{ status, data, error }, setState] = React.useReducer<
     React.Reducer<AsyncState<DataType>, AsyncAction<DataType>>
-  >(asyncReducer, initialStateRef.current);
+  >(asyncReducer, initialStateRef.current as AsyncState<DataType>);
 
   const safeSetState = useSafeDispatch(setState);
 
