@@ -1,9 +1,13 @@
 import Tooltip from "@reach/tooltip";
 import React from "react";
-import { FaPlusCircle, FaTimesCircle } from "react-icons/fa";
+import { FaMinusCircle, FaPlusCircle, FaTimesCircle } from "react-icons/fa";
 import { Movie } from "types";
 import { useAsync } from "utils/hooks";
-import { useCreateListItem, useListItem } from "utils/list-items";
+import {
+  useCreateListItem,
+  useListItem,
+  useRemoveListItem,
+} from "utils/list-items";
 import { Spinner } from "./Spinner";
 
 interface TooltipButtonProps {
@@ -41,11 +45,20 @@ function StatusButtons({ movie }: { movie: Movie }) {
   const listItem = useListItem(movie.id);
 
   const { mutateAsync: handleAddClick } = useCreateListItem();
+  const { mutateAsync: handleRemoveClick } = useRemoveListItem();
 
   return (
     <React.Fragment>
       {listItem ? (
-        <div>Remove</div>
+        <TooltipButton
+          label="Remove from list"
+          onClick={() =>
+            handleRemoveClick({
+              id: listItem.id,
+            })
+          }
+          icon={<FaMinusCircle />}
+        />
       ) : (
         <TooltipButton
           label="Add to list"

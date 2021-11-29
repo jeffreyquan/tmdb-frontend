@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useClient } from "context/auth-context";
 import { ListItem } from "types";
 
-function useListItem(movieId: number, options?: any) {
+function useListItem(movieId: string, options?: any) {
   const listItems = useListItems(options);
 
   return (
@@ -24,11 +24,11 @@ function useListItems(options = {}) {
 }
 
 function useCreateListItem(options?: any) {
-  const queryClient = useQueryClient();
   const client = useClient();
+  const queryClient = useQueryClient();
 
   return useMutation(
-    ({ movieId }: any) =>
+    ({ movieId }: { movieId: string }) =>
       client("/list-items", {
         data: { movieId },
       }),
@@ -39,4 +39,31 @@ function useCreateListItem(options?: any) {
   );
 }
 
-export { useCreateListItem, useListItem };
+function useRemoveListItem(options?: any) {
+  const client = useClient();
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    ({ id }: { id: string }) =>
+      client(`/list-items/${id}`, { method: "DELETE" }),
+    {
+      onMutate: (removedItem) => {
+        const previousItems = queryClient.getQueryData("list-item");
+
+        queryClient.setQueryData("list-items", (oldItems: any) => {
+          return oldItems.filter(
+            (item: ListItem) => item.id !== removedItem.id
+          );
+        });
+
+        // contains data to use when rolling back
+        return () => queryClient.setQueryData("list-items", previousItems);
+      },
+      // will trigger refetch of query
+      onSettled: () => queryClient.invalidateQueries("list-items"),
+      ...options,
+    }
+  );
+}
+
+export { useCreateListItem, useListItem, useRemoveListItem };
