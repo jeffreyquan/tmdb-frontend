@@ -14,9 +14,15 @@ interface TooltipButtonProps {
   label: string;
   onClick: () => void;
   icon: any;
+  highlight: string;
 }
 
-function TooltipButton({ label, onClick, icon }: TooltipButtonProps) {
+function TooltipButton({
+  label,
+  onClick,
+  icon,
+  highlight,
+}: TooltipButtonProps) {
   const { isLoading, isError, error, run, reset } = useAsync();
 
   function handleClick() {
@@ -27,10 +33,14 @@ function TooltipButton({ label, onClick, icon }: TooltipButtonProps) {
     }
   }
 
+  // change Tailwind styles based on React variables
+  // https://github.com/tailwindlabs/tailwindcss/discussions/1507
   return (
     <Tooltip label={isError ? error?.message : label}>
       <button
-        className="rounded-full h-24 w-24 flex items-center justify-center"
+        className={`rounded-full h-[48px] w-[48px] flex items-center justify-center border border-gray-900  ${
+          isLoading ? "hover:bg-gray-100" : isError ? "bg-red-100" : highlight
+        }`}
         disabled={isLoading}
         onClick={handleClick}
         aria-label={isError ? error?.message : label}
@@ -58,6 +68,7 @@ function StatusButtons({ movie }: { movie: Movie }) {
             })
           }
           icon={<FaMinusCircle />}
+          highlight="hover:bg-red-100"
         />
       ) : (
         <TooltipButton
@@ -68,6 +79,7 @@ function StatusButtons({ movie }: { movie: Movie }) {
             })
           }
           icon={<FaPlusCircle />}
+          highlight="hover:bg-green-100"
         />
       )}
     </React.Fragment>

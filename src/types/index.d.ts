@@ -12,7 +12,7 @@ type Actor = {
 };
 
 type Movie = {
-  id: number;
+  id: string;
   backdrop: string | null;
   overview: string;
   poster: string;
@@ -21,7 +21,7 @@ type Movie = {
 };
 
 type ListItem = {
-  id: number;
+  id: string;
   hasWatched: boolean;
   movie: Movie;
 };

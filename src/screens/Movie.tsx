@@ -23,6 +23,7 @@ function MovieScreen() {
         </div>
         <div className="col-span-2">
           <h1>{title}</h1>
+
           <span>{releaseDate}</span>
           <p>{overview}</p>
           <div>
@@ -30,6 +31,7 @@ function MovieScreen() {
           </div>
         </div>
       </div>
+
       <Carousel>
         {actors.map((actor: Actor) => (
           <ActorCard key={actor.id} actor={actor} />
