@@ -5,6 +5,7 @@ import "./bootstrap";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AppProviders } from "context";
+import "@reach/tooltip/styles.css";
 
 ReactDOM.render(
   <React.StrictMode>
