@@ -40,9 +40,15 @@ function Header() {
             <Logo />
           </Link>
         </div>
-        <div>
+        <ul className="flex space-x-4 items-center text-white">
+          {user && isAuthenticated && (
+            <>
+              <Link to="/list">List</Link>
+              <Link to="/finished">Finished</Link>
+            </>
+          )}
           {isAuthenticated && user ? <LogoutButton /> : <LoginButton />}
-        </div>
+        </ul>
       </nav>
     </header>
   );

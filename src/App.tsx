@@ -5,6 +5,8 @@ import { HomeScreen } from "screens/Home";
 import { Header } from "components/Header";
 import { Routes, Route, Link as RouterLink, useMatch } from "react-router-dom";
 import { MovieScreen } from "screens/Movie";
+import { ListScreen } from "screens/List";
+import { FinishedScreen } from "screens/Finished";
 
 const Profile = () => {
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
@@ -69,6 +71,8 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<HomeScreen />} />
       <Route path="movie/:movieId" element={<MovieScreen />} />
+      <Route path="/list" element={<ListScreen />} />
+      <Route path="/finished" element={<FinishedScreen />} />
     </Routes>
   );
 }

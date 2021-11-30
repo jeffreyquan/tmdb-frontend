@@ -66,4 +66,4 @@ function useRemoveListItem(options?: any) {
   );
 }
 
-export { useCreateListItem, useListItem, useRemoveListItem };
+export { useCreateListItem, useListItem, useListItems, useRemoveListItem };

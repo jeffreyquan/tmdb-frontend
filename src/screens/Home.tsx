@@ -20,7 +20,7 @@ function HomeScreen() {
   }
 
   return (
-    <div className="max-w-screen-lg	mx-auto px-2">
+    <div className="max-w-screen-lg	mx-auto p-2">
       <form onSubmit={handleSearchClick}>
         <div className="my-6 flex">
           <input

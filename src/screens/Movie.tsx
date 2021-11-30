@@ -3,7 +3,7 @@ import { Carousel } from "components/Carousel";
 import { useParams } from "react-router-dom";
 import { Actor } from "types";
 import { useMovie } from "utils/movies";
-import { StatusButtons, TooltipButton } from "components/StatusButtons";
+import { StatusButtons } from "components/StatusButtons";
 
 function MovieScreen() {
   const { movieId } = useParams();
