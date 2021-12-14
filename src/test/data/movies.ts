@@ -10,4 +10,8 @@ async function query(search: string) {
   }).slice(0, 21);
 }
 
-export { query };
+async function read(movieId: string) {
+  return movies.find((movie) => movie.id === parseInt(movieId));
+}
+
+export { query, read };

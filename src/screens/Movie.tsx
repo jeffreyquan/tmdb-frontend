@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom";
 import { Actor } from "types";
 import { useMovie } from "utils/movies";
 import { StatusButtons } from "components/StatusButtons";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function MovieScreen() {
+  const { user, isAuthenticated } = useAuth0();
   const { movieId } = useParams();
   const movie = useMovie(movieId);
 
@@ -27,7 +29,7 @@ function MovieScreen() {
           <span>{releaseDate}</span>
           <p>{overview}</p>
           <div>
-            <StatusButtons movie={movie} />
+            {isAuthenticated && user ? <StatusButtons movie={movie} /> : null}
           </div>
         </div>
       </div>

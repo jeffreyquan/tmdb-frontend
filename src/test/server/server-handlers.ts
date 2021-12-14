@@ -35,6 +35,20 @@ const handlers = [
       );
     }
   ),
+  rest.get(`${apiUrl}/movies/:movieId`, async (req, res, ctx) => {
+    const { movieId } = req.params;
+    const movie = await moviesDB.read(movieId);
+    if (!movie) {
+      return res(
+        ctx.status(404),
+        ctx.json({
+          status: 404,
+          message: "Movie not found",
+        })
+      );
+    }
+    return res(ctx.json({ ...movie }));
+  }),
 ];
 
 export { handlers };

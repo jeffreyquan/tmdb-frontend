@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useClient } from "context/auth-context";
 import { ListItem } from "types";
 
-function useListItem(movieId: string, options?: any) {
+function useListItem(movieId: number, options?: any) {
   const listItems = useListItems(options);
 
   return (
@@ -28,7 +28,7 @@ function useCreateListItem(options?: any) {
   const queryClient = useQueryClient();
 
   return useMutation(
-    ({ movieId }: { movieId: string }) =>
+    ({ movieId }: { movieId: number }) =>
       client("/list-items", {
         data: { movieId },
       }),
@@ -38,6 +38,13 @@ function useCreateListItem(options?: any) {
     }
   );
 }
+
+// function useUpdateListItem(options?: any) {
+//   const client = useClient();
+//   const queryClient = useQueryClient();
+
+//   return useMutation((updates) => client(`/list-items/${updates.id}`));
+// }
 
 function useRemoveListItem(options?: any) {
   const client = useClient();

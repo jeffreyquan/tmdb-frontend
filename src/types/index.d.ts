@@ -12,7 +12,7 @@ type Actor = {
 };
 
 type Movie = {
-  id: string;
+  id: number;
   backdrop: string | null;
   overview: string;
   poster: string;
